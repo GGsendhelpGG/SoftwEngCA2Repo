@@ -645,5 +645,51 @@
         </div>
     </div>
     <script src="../footer.js"></script>
+    <script>
+        window.onload = (event)=>{
+            const memberDetails = JSON.parse(sessionStorage.member);
+            var name = document.getElementById("name");
+            var email = document.getElementById("email");
+            var phone = document.getElementById("phone");
+            var country = document.getElementById("country");//exclude this
+            var address = document.getElementById("address");
+            var challengeQ = document.getElementById("securityQuestion");//exclude this
+            var securityAns = document.getElementById("securityAnswer");
+            var age = document.getElementById("age");
+            var income = document.getElementById("income");
+            var serviceLA = document.getElementById("serviceLevelAgreement");//exclude this
+            const dbName = memberDetails.name;
+            const dbEmail = memberDetails.email;
+            const dbPhone = memberDetails.phone;
+            const dbCountry = memberDetails.city;
+            const dbAddress = memberDetails.address;
+            const dbSecurityQn = memberDetails.securityQuestion;
+            const dbSecurityAns = memberDetails.securityAnswer;
+            const dbAge = memberDetails.age;
+            const dbIncome = memberDetails.income;
+            const dbSLA = memberDetails.sla;
+            name.value = dbName;
+            email.value = dbEmail;
+            phone.value = dbPhone;
+            address.value = dbAddress;
+            securityAns.value = dbSecurityAns;
+            age.value = dbAge;
+            income.value = dbIncome;
+            challengeQ[(dbSecurityQn-1)].selected=true;
+            if(dbSLA==1){
+                serviceLA.checked = true
+            }
+            const countryList = document.querySelector("#country");
+            var testA = new Array(countryList.length);
+            for( var i = 0; i< countryList.length; i++){
+                testA[i] = countryList[i].value;
+            }
+            for( var i = 0; i< testA.length;i++){
+                if(testA[i] == dbCountry){
+                    countryList[i].selected = true;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
